@@ -12,8 +12,6 @@ const validate = (Dir, Name) => {
   return '';
 };
 const modify = data => {
-  console.error(chalk.green('有问题找「杨金达」'));
-
   const {Dir, Name} = data;
 
   const validateRes = validate(Dir, Name);
@@ -35,11 +33,20 @@ const modify = data => {
   assets.forEach(item => {
     const name = item.p.replace(/.+_/g, `${Name}_`);
     item.u = '';
-    fs.renameSync(`./images/${item.p}`, `require('./images/${name}')`);
-    item.p = name;
+
+    fs.renameSync(`./images/${item.p}`, `./images/${name}`);
+
+    item.p = `require('./images/${name}')`;
   });
 
-  const finalStr = 'export default' + JSON.stringify(jsonData, null, 4);
+  let finalStr = 'export default' + JSON.stringify(jsonData, null, 4);
+
+  const reg = /"require.+"/g;
+  const matchArr = finalStr.match(reg) || [];
+  matchArr.forEach(item => {
+    finalStr = finalStr.replace(item, item.slice(1, -1));
+  });
+
   fs.writeFileSync(Dir, finalStr);
   fs.renameSync(Dir, `./${Name}.ts`);
   console.error(chalk.red('修改成功'));
