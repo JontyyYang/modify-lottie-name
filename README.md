@@ -20,3 +20,6 @@
 // -dir 后面跟着 json 文件的全名  -name 后面跟着需要修改的名字， name 会影响到 ts 文件名和图片名
 ```
 
+
+## github
+https://github.com/JontyyYang/modify-lottie-name
