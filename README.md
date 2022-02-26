@@ -14,4 +14,9 @@
 
 ## 使用
 
-1. npm install -g 
+```shell
+1. npm install -g modify-lottie-name
+2. modify-lottie -dir data.json -name jontyy 
+// -dir 后面跟着 json 文件的全名  -name 后面跟着需要修改的名字， name 会影响到 ts 文件名和图片名
+```
+
