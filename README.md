@@ -4,6 +4,7 @@
 
 1. 动效同学给到的 lottie 包含两份信息，分别是  data.json 和一个 images 文件夹
 2. 如果直接无脑引入， 在 webpack 打包的时候，会提示异常 「Multiple chunks emit assets to the same filename」
+   1. 这里可以直接在 webpack 的配置中，设置 output 的路径后面加上 hash。 「后来才发现，我们项目里开发环境没有加 hash 才会导致这个报错」
 3. 所以一般文件我们需要手动修改一些信息
    1. 修改 data.json 文件名为  target.ts  【target 指你想改的不一样的名字】
    2. 修改images 目录下的图片名为 target_0.png  【动效直接导出的是 img_0.png】
